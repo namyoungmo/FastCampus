@@ -1,9 +1,9 @@
-def mainDir="Chapter02/2-jenkins-docker"
+def mainDir="Part2_Docker/Chapter02/2-jenkins-docker"
 def ecrLoginHelper="docker-credential-ecr-login"
-def region="<AWS Region>"
-def ecrUrl="<AWS ECR URL>"
-def repository="<Image Repository Name>"
-def deployHost="<Deploy VM Private IP>"
+def region="us-east-1"
+def ecrUrl="341742833016.dkr.ecr.us-east-1.amazonaws.com"
+def repository="test"
+def deployHost="172.31.30.243"
 
 pipeline {
     agent any
@@ -27,7 +27,7 @@ pipeline {
                 withAWS(region:"${region}", credentials:"aws-key") {
                     ecrLogin()
                     sh """
-                        curl -O https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/0.4.0/linux-amd64/${ecrLoginHelper}
+                        curl -O https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/0.6.0/linux-amd64/${ecrLoginHelper}
                         chmod +x ${ecrLoginHelper}
                         mv ${ecrLoginHelper} /usr/local/bin/
                         cd ${mainDir}
