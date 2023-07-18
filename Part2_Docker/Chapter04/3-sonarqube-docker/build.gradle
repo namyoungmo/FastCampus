@@ -62,11 +62,11 @@ sonarqube {
       property "sonar.exclusions", "**/generated-*/**/*"
       property "sonar.projectKey", "org.sonarqubeJacocoCodeCoverage"
       property "sonar.reportPath" , "${project.buildDir}/jacoco/test.exec"
-      property "sonar.host.url", "http://<SonarQube Private IP>:9000"
+      property "sonar.host.url", "http://ec2-34-203-234-23.compute-1.amazonaws.com:9000"
       property "sonar.sources", "src/main/java"
       property "sonar.tests", "src/test/java"
-      property "sonar.login", "<SonarQube ID>"
-      property "sonar.password", "<SonarQube PW>"
+      property "sonar.login", "test"
+      property "sonar.password", "!test00"
   }
 }
 
@@ -77,8 +77,8 @@ jib {
         image = 'adoptopenjdk/openjdk11:alpine-jre'
     }
     to {
-        image = '<AWS ECR URL>/<Image Repository Name>'
-        tags = ['<Image Tag Name>']
+        image = '341742833016.dkr.ecr.us-east-1.amazonaws.com/test'
+        tags = ['1.0']
     }
     container {
         entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'spring-boot-gradle-demo-0.0.1-SNAPSHOT.jar']
