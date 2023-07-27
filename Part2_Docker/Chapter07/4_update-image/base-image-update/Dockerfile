@@ -1,4 +1,4 @@
-FROM ubuntu:hirsute
+FROM ubuntu:mantic
 CMD ["bash"]
 RUN /bin/sh -c set -eux; 	apt-get update; 	apt-get install -y --no-install-recommends 		ca-certificates p11-kit 	; 	rm -rf /var/lib/apt/lists/*
 ENV JAVA_HOME=/usr/local/openjdk-11

@@ -1,4 +1,4 @@
-FROM <AWS ECR URL>/<AWS ECR Repository Name>:custom-base-image AS build-env
+FROM 341742833016.dkr.ecr.ap-northeast-2.amazonaws.com/test:custom-base-image AS build-env
 COPY . /app/examples
 WORKDIR /app
 RUN javac examples/*.java
