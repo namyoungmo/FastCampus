@@ -33,6 +33,11 @@ jib {
     from {
         image = 'adoptopenjdk/openjdk11:alpine-jre'
     }
+    // Nexus Docker Repository
+    to {
+        image = 'ec2-3-93-165-36.compute-1.amazonaws.com:5000/test'
+        tags = ['1.0']
+    }
     allowInsecureRegistries = true
     container {
         entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'test-docker-spring-boot-0.0.1-SNAPSHOT.jar']
