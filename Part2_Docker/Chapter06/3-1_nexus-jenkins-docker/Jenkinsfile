@@ -1,12 +1,12 @@
 def mainDir="Part2_Docker/Chapter06/3-1_nexus-jenkins-docker"
 def region="ap-northeast-2"
-def nexusUrl="<Nexus VM의 프라이빗 IP DNS 이름>:5443"
+def nexusUrl="ip-172-31-1-43.ap-northeast-2.compute.internal:5443"
 def repository="container-registry"
-def deployHost="<Deploy VM의 프라이빗 IP DNS 이름>"
+def deployHost="ip-172-31-2-143.ap-northeast-2.compute.internal"
 def tagName="1.0"
-def nexusid="<Nexus 접근 계정명>"
-def nexuspw="<Nexus 접근 비밀번호>"
-def jenkins_ip="<Jenkins VM의 프라이빗 IP DNS 이름>"
+def nexusid="test"
+def nexuspw="!test00"
+def jenkins_ip="ip-172-31-0-66.ap-northeast-2.compute.internal"
 
 pipeline {
     agent any
