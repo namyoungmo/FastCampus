@@ -1,20 +1,20 @@
 // Common
-def mainDir="Chapter09/mini-project"
-def region="<AWS Region>"
-def deployHost="<Deploy VM Private IP>"
+def mainDir="Part2_Docker/Chapter09/mini-project"
+def region="ap-northeast-2"
+def deployHost="172.31.76.179"
 
 // Repository Info
-def repository="<Image Repository Name>"
-def baseImageTag="update-base-image"
-def appImageTag="update-app-image"
+def repository="test"
+def baseImageTag="base-image"
+def appImageTag="app-image"
 
 // Nexus
-def nexusUrl="<Nexus Private IP>:5000"
-def nexusProxyUrl="<Nexus Private IP>:5001"
+def nexusUrl="172.31.33.145:5000"
+def nexusProxyUrl="172.31.33.145:5001"
 
 // AWS ECR
 def ecrLoginHelper="docker-credential-ecr-login"
-def ecrUrl="<AWS ECR URL>"
+def ecrUrl="341742833016.dkr.ecr.ap-northeast-2.amazonaws.com"
 
 
 pipeline {
@@ -30,8 +30,8 @@ pipeline {
             steps {
                 sh """
                 cd ${mainDir}/base-image
-                echo '<Nexus repo PW>' | docker login -u '<Nexus repo ID>' --password-stdin ${nexusUrl}
-                echo '<Nexus repo PW>' | docker login -u '<Nexus repo ID>' --password-stdin ${nexusProxyUrl}
+                echo '!test00' | docker login -u 'test' --password-stdin ${nexusUrl}
+                echo '!test00' | docker login -u 'test' --password-stdin ${nexusProxyUrl}
                 docker build -t ${nexusUrl}/${repository}:${baseImageTag} .
                 docker push ${nexusUrl}/${repository}:${baseImageTag}
                 """
@@ -104,8 +104,8 @@ pipeline {
             steps{
                 sshagent(credentials : ["deploy-key"]) {
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@${deployHost} \
-                      'echo \"<Nexus repo PW>\" | docker login -u <Nexus repo ID> --password-stdin ${nexusUrl}; \
-                      docker run -d -p 81:8080 -t ${nexusUrl}/${repository}:${appImageTag};'"
+                      'echo \"!test00\" | docker login -u test --password-stdin ${nexusUrl}; \
+                      docker run -d -p 8081:8080 -t ${nexusUrl}/${repository}:${appImageTag};'"
                 }
             }
         }
@@ -114,7 +114,7 @@ pipeline {
                 sshagent(credentials : ["deploy-key"]) {
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@${deployHost} \
                      'aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${ecrUrl}/${repository}; \
-                      docker run -d -p 82:8080 -t ${ecrUrl}/${repository}:${appImageTag};'"
+                      docker run -d -p 8082:8080 -t ${ecrUrl}/${repository}:${appImageTag};'"
                 }
             }
         }

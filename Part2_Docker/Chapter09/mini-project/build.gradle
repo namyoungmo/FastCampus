@@ -16,7 +16,7 @@ dependencies {
 
 repositories {
     maven {
-        url "http://<Nexus Private IP>:8081/repository/<nexus artifact repository Name>"
+        url "http://172.31.33.145:8081/repository/artifact-repository"
         allowInsecureProtocol true
     }
 
@@ -58,11 +58,11 @@ sonarqube {
       property "sonar.exclusions", "**/generated-*/**/*"
       property "sonar.projectKey", "org.sonarqubeJacocoCodeCoverage"
       property "sonar.reportPath" , "${project.buildDir}/jacoco/test.exec"
-      property "sonar.host.url", "http://<SonarQube Private IP>:9000"
+      property "sonar.host.url", "http://172.31.33.145:9000"
       property "sonar.sources", "src/main/java"
       property "sonar.tests", "src/test/java"
-      property "sonar.login", "<SonarQube ID>"
-      property "sonar.password", "<SonarQube PW>"
+      property "sonar.login", "test"
+      property "sonar.password", "!test00"
   }
 }
 
@@ -71,7 +71,7 @@ tasks['sonarqube'].dependsOn test
 
 jib {
   from {
-    image = "<Nexus Private IP>:5000/<Nexus Repository Name>:<Image Tag Name>"
+    image = "172.31.33.145:5000/test:base-image"
   }
   allowInsecureRegistries = true
 	container {
