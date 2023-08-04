@@ -23,7 +23,7 @@ repositories {
 }
 
 version = '0.0.1-SNAPSHOT'
-description = 'docker-mini-project'
+description = 'update-docker-mini-project'
 group = 'com.test'
 
 java.sourceCompatibility = JavaVersion.VERSION_11
@@ -54,7 +54,7 @@ jacocoTestReport {
 
 sonarqube {
   properties {
-      property "sonar.projectName","docker-mini-project"
+      property "sonar.projectName","update-docker-mini-project"
       property "sonar.exclusions", "**/generated-*/**/*"
       property "sonar.projectKey", "org.sonarqubeJacocoCodeCoverage"
       property "sonar.reportPath" , "${project.buildDir}/jacoco/test.exec"
@@ -71,11 +71,11 @@ tasks['sonarqube'].dependsOn test
 
 jib {
   from {
-    image = "172.31.33.145:5000/test:base-image"
+    image = "172.31.33.145:5000/test:update-base-image"
   }
   allowInsecureRegistries = true
 	container {
-    entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'docker-mini-project-0.0.1-SNAPSHOT.jar']
+    entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'update-docker-mini-project-0.0.1-SNAPSHOT.jar']
     // mainClass = 'com.test.StartApplication'
     jvmFlags = ['-Xms512m', '-Xmx512m', '-Xdebug', '-XshowSettings:vm', '-XX:+UnlockExperimentalVMOptions', '-XX:+UseContainerSupport']
 		ports = ['8080']

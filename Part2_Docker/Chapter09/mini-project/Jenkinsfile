@@ -5,8 +5,8 @@ def deployHost="172.31.76.179"
 
 // Repository Info
 def repository="test"
-def baseImageTag="base-image"
-def appImageTag="app-image"
+def baseImageTag="update-base-image"
+def appImageTag="update-app-image"
 
 // Nexus
 def nexusUrl="172.31.33.145:5000"
@@ -87,7 +87,8 @@ pipeline {
             steps {
                 script {
                     try {
-                        jenkins_ip = sh(script: "docker inspect -f '{{ .NetworkSettings.IPAddress }}' jenkins", returnStdout: true).trim()
+                        //jenkins_ip = sh(script: "docker inspect -f '{{ .NetworkSettings.IPAddress }}' jenkins", returnStdout: true).trim()
+                        jenkins_ip = "172.31.15.200"
                         clair_ip = sh(script: "docker inspect -f '{{ .NetworkSettings.IPAddress }}' clair", returnStdout: true).trim()
                         /*
                         sh """
@@ -116,7 +117,7 @@ pipeline {
                 sshagent(credentials : ["deploy-key"]) {
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@${deployHost} \
                       'echo \"!test00\" | docker login -u test --password-stdin ${nexusUrl}; \
-                      docker run -d -p 8081:8080 -t ${nexusUrl}/${repository}:${appImageTag};'"
+                      docker run -d -p 81:8080 -t ${nexusUrl}/${repository}:${appImageTag};'"
                 }
             }
         }
@@ -125,7 +126,7 @@ pipeline {
                 sshagent(credentials : ["deploy-key"]) {
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@${deployHost} \
                      'aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${ecrUrl}/${repository}; \
-                      docker run -d -p 8082:8080 -t ${ecrUrl}/${repository}:${appImageTag};'"
+                      docker run -d -p 82:8080 -t ${ecrUrl}/${repository}:${appImageTag};'"
                 }
             }
         }

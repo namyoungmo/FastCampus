@@ -14,8 +14,8 @@ public class StartApplication {
 
     @GetMapping("/")
     public String index(final Model model) {
-        model.addAttribute("title", "Docker 활용 강의 종료");
-        model.addAttribute("msg", "업데이트 버전 Docker 배포 테스트 입니다.");
+        model.addAttribute("title", "Docker 활용 강의 업데이트 종료");
+        model.addAttribute("msg", "업데이트 업데이트 버전 Docker 배포 테스트 입니다.!!!");
         return "index";
     }
 
