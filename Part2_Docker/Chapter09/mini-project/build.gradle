@@ -1,6 +1,6 @@
 plugins {
   id 'java'
-  id 'org.springframework.boot' version '2.6.2'
+  id 'org.springframework.boot' version '2.6.15'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'com.google.cloud.tools.jib' version '3.1.4'
   id 'org.sonarqube' version '3.3'
@@ -23,7 +23,7 @@ repositories {
 }
 
 version = '0.0.1-SNAPSHOT'
-description = 'update-docker-mini-project'
+description = 'docker-mini-project'
 group = 'com.test'
 
 java.sourceCompatibility = JavaVersion.VERSION_11
@@ -54,7 +54,7 @@ jacocoTestReport {
 
 sonarqube {
   properties {
-      property "sonar.projectName","update-docker-mini-project"
+      property "sonar.projectName","docker-mini-project"
       property "sonar.exclusions", "**/generated-*/**/*"
       property "sonar.projectKey", "org.sonarqubeJacocoCodeCoverage"
       property "sonar.reportPath" , "${project.buildDir}/jacoco/test.exec"
@@ -75,7 +75,7 @@ jib {
   }
   allowInsecureRegistries = true
 	container {
-    entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'update-docker-mini-project-0.0.1-SNAPSHOT.jar']
+    entrypoint = ['java', '-Dspring.profiles.active=test', '-jar', 'docker-mini-project-0.0.1-SNAPSHOT.jar']
     // mainClass = 'com.test.StartApplication'
     jvmFlags = ['-Xms512m', '-Xmx512m', '-Xdebug', '-XshowSettings:vm', '-XX:+UnlockExperimentalVMOptions', '-XX:+UseContainerSupport']
 		ports = ['8080']
