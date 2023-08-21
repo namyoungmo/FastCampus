@@ -1,11 +1,18 @@
-apiVersion: apiextensions.k8s.io/v1beta1
+# crd.yaml 파일은 적용할 필요가 없음.
+# 적용하기전 kubectl get crd 명령으로 eniconfigs.crd.k8s.amazonaws.com 가 존재하는지 확인함.
+# 존재하지 않는다면 아래 명령어로 설치함.
+# kubectl apply -f https://raw.githubusercontent.com/aws/amazon-vpc-cni-k8s/release-1.11/config/master/aws-k8s-cni.yaml
+apiVersion: apiextensions.k8s.io/v1alpha1
 kind: CustomResourceDefinition
 metadata:
   name: eniconfigs.crd.k8s.amazonaws.com
 spec:
   scope: Cluster
   group: crd.k8s.amazonaws.com
-  version: v1alpha1
+  versions: 
+  - name: v1alpha1
+    served: true
+    storage: true
   names:
     plural: eniconfigs
     singular: eniconfig

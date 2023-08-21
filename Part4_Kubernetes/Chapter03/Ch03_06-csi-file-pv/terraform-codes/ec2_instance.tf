@@ -1,6 +1,8 @@
 resource "aws_instance" "test-ec2-bastion" {
 
-  ami                         = "ami-0454bb2fefc7de534"
+  # 기존 ami는 unbutu 20.04 버전이라서 22.04 버전으로 ami 변경함.
+  # ami                         = "ami-0454bb2fefc7de534"
+  ami                         = "ami-0c9c942bd7bf113a2"
   associate_public_ip_address = "true"
   availability_zone           = "ap-northeast-2a"
 

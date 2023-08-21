@@ -10,5 +10,6 @@ resource "aws_eip" "test-elastic-ip" {
     Name        = "test-elastic-ip"
   }
 
-  vpc = true
+  # vpc = true
+  domain   = "vpc"
 }

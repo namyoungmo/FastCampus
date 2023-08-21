@@ -32,6 +32,9 @@ resource "aws_iam_policy" "test-alb-iam-policy" {
                 "ec2:DescribeTags",
                 "ec2:GetCoipPoolUsage",
                 "ec2:DescribeCoipPools",
+                # Ingress Load balance를 생성하기위해서 아래 AddTags는 반드시 필요함.
+                # kubectl describe ingress ingress-2048 -n test-ingress-alb 명령으로 해당 원인을 찾음.
+                "elasticloadbalancing:AddTags",
                 "elasticloadbalancing:DescribeLoadBalancers",
                 "elasticloadbalancing:DescribeLoadBalancerAttributes",
                 "elasticloadbalancing:DescribeListeners",
