@@ -57,3 +57,9 @@ out/
 # Directories
 .terraform/
 .vagrant/
+Part4_Kubernetes/Chapter08/Ch08_04-falco/helm-chart/Chart.lock
+Part4_Kubernetes/Chapter08/Ch08_04-falco/helm-chart/charts/falcosidekick-0.4.4.tgz
+.gitignore
+.gitignore
+.gitignore
+.gitignore
