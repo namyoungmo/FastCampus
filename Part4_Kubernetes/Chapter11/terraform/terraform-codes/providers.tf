@@ -3,15 +3,15 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "4.22.0"
+      version = "5.13.1"
     }
   }
 
   backend "s3" {
-    bucket = "<Project Name>-s3-tf-state"
+    bucket = "momo-project-s3-tf-state"
     key = "terraform.tfstate"
     region = "ap-northeast-2"
-    dynamodb_table = "<Project Name>-ddb-lock-table"
+    dynamodb_table = "momo-project-ddb-lock-table"
     encrypt = "true"
   }
 }

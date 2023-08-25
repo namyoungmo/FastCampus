@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "<DNS 도메인 주소명>"
+    - "a01e4f8ac400949928c333b8f2f3d55c-1974779444.ap-northeast-2.elb.amazonaws.com"
     secretName: "ingress-2048"
   rules:
-  - host: "<DNS 도메인 주소명>"
+  - host: "a01e4f8ac400949928c333b8f2f3d55c-1974779444.ap-northeast-2.elb.amazonaws.com"
     http:
       paths:
       - path: /

@@ -7,7 +7,7 @@ resource "aws_eks_cluster" "test-eks-cluster" {
 
     name = var.cluster-name
     role_arn = aws_iam_role.test-eks_iam_cluster.arn
-    version = "1.26"
+    version = "1.27"
 
     vpc_config{
         security_group_ids = [aws_security_group.test-eks_sg_controlplane.id, aws_security_group.test-eks_sg_nodes.id]

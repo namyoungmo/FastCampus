@@ -5,7 +5,7 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/subnets: <Subnet의 ID 목록>
+    alb.ingress.kubernetes.io/subnets: subnet-0ca7ba7da7f32c469, subnet-01631d557b0cbb3ec
 spec:
   ingressClassName: alb
   rules:

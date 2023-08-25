@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "test-s3-tf-state" {
 
-  bucket = "<Project Name>-s3-tf-state"
+  bucket = "momo-project-s3-tf-state"
 
   tags = {
-    "Name" = "<Project Name>-s3-tf-state"
+    "Name" = "momo-project-s3-tf-state"
   }
   
 }
@@ -11,7 +11,7 @@ resource "aws_s3_bucket" "test-s3-tf-state" {
 resource "aws_dynamodb_table" "test-ddb-lock-table" {
 
   depends_on   = [aws_s3_bucket.test-s3-tf-state]
-  name         = "<Project Name>-ddb-lock-table"
+  name         = "momo-project-ddb-lock-table"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 
@@ -21,7 +21,7 @@ resource "aws_dynamodb_table" "test-ddb-lock-table" {
   }
 
   tags = {
-    "Name" = "<Project Name>-ddb-lock-table"
+    "Name" = "momo-project-ddb-lock-table"
   }
 
 }

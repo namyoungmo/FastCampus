@@ -68,7 +68,7 @@ data:
       "logs": {
         "metrics_collected": {
           "kubernetes": {
-            "cluster_name": "<EKS 클러스터명>",
+            "cluster_name": "test-eks-cluster",
             "metrics_collection_interval": 60
           }
         },
@@ -176,12 +176,12 @@ spec:
 ---
 
 # create configmap for cluster name and aws region for CloudWatch Logs
-# need to replace the placeholders <EKS 클러스터명> and ap-northeast-2
+# need to replace the placeholders test-eks-cluster and ap-northeast-2
 # and need to replace "On" and "2020"
 # and need to replace "Off" and "On"
 apiVersion: v1
 data:
-  cluster.name: <EKS 클러스터명>
+  cluster.name: test-eks-cluster
   logs.region: ap-northeast-2
   http.server: "On"
   http.port: "2020"

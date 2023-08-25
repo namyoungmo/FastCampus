@@ -18,7 +18,7 @@ func NewMyChart(scope constructs.Construct, id string, props *MyChartProps) cdk8
 	}
 	chart := cdk8s.NewChart(scope, jsii.String(id), &cprops)
 
-	label := map[string]*string{"app": jsii.String("cdk8s")}
+	label := map[string]*string{"app": jsii.String("web-text-box")}
 
 	k8s.NewKubeService(chart, jsii.String("service"), &k8s.KubeServiceProps{
 		Spec: &k8s.ServiceSpec{
@@ -57,6 +57,6 @@ func NewMyChart(scope constructs.Construct, id string, props *MyChartProps) cdk8
 
 func main() {
 	app := cdk8s.NewApp(nil)
-	NewMyChart(app, "cdk8s", nil)
+	NewMyChart(app, "web-text-box", nil)
 	app.Synth()
 }
